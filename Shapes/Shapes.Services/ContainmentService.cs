@@ -8,5 +8,9 @@ namespace Shapes.Services
 {
     public class ContainmentService
     {
+        public bool IsContained()
+        {
+            return true;
+        }
     }
 }

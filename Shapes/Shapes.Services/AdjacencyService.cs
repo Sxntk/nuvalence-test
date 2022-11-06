@@ -8,5 +8,9 @@ namespace Shapes.Services
 {
     public class AdjacencyService
     {
+        public bool IsAdjacent()
+        {
+            return true;
+        }
     }
 }
