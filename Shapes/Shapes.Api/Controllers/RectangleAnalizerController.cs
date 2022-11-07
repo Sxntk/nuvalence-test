@@ -1,6 +1,5 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Shapes.Model;
 using Shapes.Services;
 
@@ -11,20 +10,18 @@ namespace Shapes.Api.Controllers
     public class RectangleAnalizerController : ControllerBase
     {
 
-        private readonly ILogger<RectangleAnalizerController> _logger;
-
         private readonly ContainmentService _containmentService;
 
         private readonly AdjacencyService _adjacencyService;
 
-        public RectangleAnalizerController(ILogger<RectangleAnalizerController> logger, ContainmentService containmentService, AdjacencyService adjacencyService)
+        public RectangleAnalizerController(ContainmentService containmentService, AdjacencyService adjacencyService)
         {
-            _logger = logger;
             _containmentService = containmentService;
             _adjacencyService = adjacencyService;
         }
 
         [HttpPost(Name = "GetRectangleProperties")]
+        [EnableCors("AllowAll")]
         public async Task<IActionResult> Post([FromBody] RectangleRequest inputRequest)
         {
             if (inputRequest is null || inputRequest.Rectangle1 is null || inputRequest.Rectangle2 is null)
@@ -42,10 +39,9 @@ namespace Shapes.Api.Controllers
 
     public class RectangleRequest
     {
-        public Rectangle? Rectangle1 { get; set; }
+        public Rectangle Rectangle1 { get; set; }
 
-        public Rectangle? Rectangle2 { get; set; }
-        public string Name { get; set; }
+        public Rectangle Rectangle2 { get; set; }
     }
 
     public class RectangleResponse
