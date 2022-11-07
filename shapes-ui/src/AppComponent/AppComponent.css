@@ -30,3 +30,16 @@
 span {
     color: green
 }
+
+button {
+    font-size: 20px;
+    padding: 8px;
+    background-color: #ffa500;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #ffa50090;
+}
