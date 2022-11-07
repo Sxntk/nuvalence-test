@@ -16,9 +16,9 @@ namespace Shapes.Model
 
         public decimal EndPointY { get; private set; }
 
-        public decimal? Width { get { return Math.Abs(EndPointX - StartPointX); } }
+        public decimal Width { get { return Math.Abs(EndPointX - StartPointX); } }
 
-        public decimal? Height { get { return Math.Abs(EndPointY - StartPointY); } }
+        public decimal Height { get { return Math.Abs(EndPointY - StartPointY); } }
 
         public Rectangle(decimal startPointX, decimal startPointY, decimal endPointX, decimal endPointY)
         {

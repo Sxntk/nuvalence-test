@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shapes.Model;
+using Shapes.Services;
 
 namespace Shapes.Api.Controllers
 {
@@ -12,16 +13,30 @@ namespace Shapes.Api.Controllers
 
         private readonly ILogger<RectangleAnalizerController> _logger;
 
-        public RectangleAnalizerController(ILogger<RectangleAnalizerController> logger)
+        private readonly ContainmentService _containmentService;
+
+        private readonly AdjacencyService _adjacencyService;
+
+        public RectangleAnalizerController(ILogger<RectangleAnalizerController> logger, ContainmentService containmentService, AdjacencyService adjacencyService)
         {
             _logger = logger;
+            _containmentService = containmentService;
+            _adjacencyService = adjacencyService;
         }
 
         [HttpPost(Name = "GetRectangleProperties")]
         public async Task<IActionResult> Post([FromBody] RectangleRequest inputRequest)
         {
+            if (inputRequest is null || inputRequest.Rectangle1 is null || inputRequest.Rectangle2 is null)
+            {
+                return BadRequest($"Input cannot be null. Input: {inputRequest}, Rectangle1: {inputRequest?.Rectangle1} Rectangle2: {inputRequest?.Rectangle2}");
+            }
 
-            return Ok(inputRequest.Name);
+            RectangleResponse response = new();
+            response.IsContained = _containmentService.IsContained(inputRequest.Rectangle1, inputRequest.Rectangle2);
+            response.AdjacencyType = _adjacencyService.IsAdjacent(inputRequest.Rectangle1, inputRequest.Rectangle2).AdjacencyType.ToString();
+
+            return Ok(response);
         }
     }
 
@@ -31,5 +46,12 @@ namespace Shapes.Api.Controllers
 
         public Rectangle? Rectangle2 { get; set; }
         public string Name { get; set; }
+    }
+
+    public class RectangleResponse
+    {
+        public bool IsContained { get; set; }
+
+        public string AdjacencyType { get; set; }
     }
 }

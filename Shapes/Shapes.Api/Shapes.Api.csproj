@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shapes.Model\Shapes.Model.csproj" />
+    <ProjectReference Include="..\Shapes.Services\Shapes.Services.csproj" />
   </ItemGroup>
 
 </Project>

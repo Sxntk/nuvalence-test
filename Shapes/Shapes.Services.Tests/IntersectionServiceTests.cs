@@ -9,10 +9,14 @@ namespace Shapes.Services.Tests
         public void IsIntersected()
         {
             // Arrange
-            Rectangle shape1 = new(10, 10, 20, 20);
-            Rectangle shape2 = new(15, 15, 25, 25);
+            Rectangle shape1 = new(10, 10, 210, 210);
+            Rectangle shape2 = new(210, 10, 310, 110);
+
+            // Act
             IntersectionService service = new IntersectionService();
             service.IsIntersected(shape1, shape2);
+
+            // Assert
         }
     }
 }
