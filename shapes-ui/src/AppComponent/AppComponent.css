@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    border-radius: 8px;
+    margin: 8px;
+    padding: 8px;
+    width: 800px;
+    align-items: center;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.iscontained {
+    align-self: flex-start;
+    background-color: aliceblue;
+    border-radius: 8px;
+    width: 600px;
+    padding: 8px;
+}
+
+.adjacent {
+    align-self: flex-start;
+    background-color: aliceblue;
+    border-radius: 8px;
+    width: 600px;
+    padding: 8px;
+}
+
+span {
+    color: green
+}
+
+button {
+    font-size: 20px;
+    padding: 8px;
+    background-color: #ffa500;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #ffa50090;
+}
